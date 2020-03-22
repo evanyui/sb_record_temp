@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>上伯員工每日溫度提交表 / Shangbor Employee Daily Temperature Monitoring</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2 style="text-align: center">上伯電子零組件有限公司 / Shang Bor Plastics</h2>
+    <form id="temp_form" class="text-center border border-light p-5">
+
+        <p class="h4 mb-4">溫度紀錄</p>
+        <p class="h4 mb-4">Daily Temperature Monitoring</p>
+
+        <input type="text" id="employee_id" name="employee_id" class="form-control mb-4" placeholder="工號 / Employee Number">
+        <br>
+        <input type="text" id="temperature" name="temperature" class="form-control mb-4" placeholder="溫度 / Temperature">
+        <br>
+        <button id="submit" class="btn btn-info btn-block" type="button">提交 / Submit</button>
+
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        /* The following code is executed once the DOM is loaded */
+        /* This flag will prevent multiple comment submits: */
+        $("#submit").click(function(){
+            $.ajax({
+                type: 'POST',
+                url: "api.aaron-rachel.com/api/add_daily_temperature",
+                dataType: 'json',
+                data: {
+                    employee_id: $("#employee_id").val(),
+                    temperature: $("#temperature").val()
+                }, 
+                success: function(response) {
+                    alert("謝謝您的配合，您的紀錄已登入！");
+                },
+                error: function(response) {
+                    alert(response.responseJSON.data);
+                }
+            });
+        });
+    })
+</script>
+</body>
+</html>
