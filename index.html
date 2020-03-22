@@ -32,16 +32,17 @@
         $("#submit").click(function(){
             $.ajax({
                 type: 'POST',
-                url: "api.aaron-rachel.com/api/add_daily_temperature",
-                dataType: 'json',
+                url: "https://api.aaron-rachel.com/api/add_daily_temperature",
                 data: {
                     employee_id: $("#employee_id").val(),
                     temperature: $("#temperature").val()
                 }, 
                 success: function(response) {
+                    console.log(response);
                     alert("謝謝您的配合，您的紀錄已登入！");
                 },
                 error: function(response) {
+                    console.log(response);
                     alert(response.responseJSON.data);
                 }
             });
