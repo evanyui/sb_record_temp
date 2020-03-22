@@ -38,10 +38,12 @@
                     temperature: $("#temperature").val()
                 }, 
                 success: function(response) {
+                    console.log("success");
                     console.log(response);
                     alert("謝謝您的配合，您的紀錄已登入！");
                 },
                 error: function(response) {
+                    console.log("error");
                     console.log(response);
                     alert(response.responseJSON.data);
                 }
