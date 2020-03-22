@@ -31,21 +31,19 @@
         /* This flag will prevent multiple comment submits: */
         $("#submit").click(function(){
             $.ajax({
-                type: 'POST',
-                url: "https://api.aaron-rachel.com/api/add_daily_temperature",
-                data: {
-                    employee_id: $("#employee_id").val(),
-                    temperature: $("#temperature").val()
-                }, 
+                type: 'GET',
+                url: "http://api.aaron-rachel.com/api/add_daily_temperature?employee_id=" + $("#employee_id").val() + "&temperature=" + $("#temperature").val(),
                 success: function(response) {
-                    console.log("success");
                     console.log(response);
                     alert("謝謝您的配合，您的紀錄已登入！");
                 },
-                error: function(response) {
-                    console.log("error");
+                error: function(response, err) {
                     console.log(response);
-                    alert(response.responseJSON.data);
+                    if (typeof response.responseJSON.data !== 'undefined') {
+                        alert(response.responseJSON.data);
+                    } else {
+                        alert('Please try again later, 請稍後再試！')
+                    }
                 }
             });
         });
