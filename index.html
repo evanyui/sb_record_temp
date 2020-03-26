@@ -17,19 +17,19 @@
         <p class="h4 mb-4">溫度紀錄</p>
         <p class="h4 mb-4">Daily Temperature Monitoring</p>
 
-        <input type="text" id="employee_id" name="employee_id" class="form-control mb-4" placeholder="工號 / Employee Number">
+        <input type="text" id="employee_id" name="employee_id" class="form-control mb-4" placeholder="工號 / Employee Number" required>
         <br>
-        <input type="text" id="temperature" name="temperature" class="form-control mb-4" placeholder="溫度 / Temperature">
+        <input type="text" id="temperature" name="temperature" class="form-control mb-4" placeholder="溫度 / Temperature" required>
         <br>
         <button id="submit" class="btn btn-info btn-block" type="button">提交 / Submit</button>
 
     </form>
 </div>
 <script>
-    $(document).ready(function(){
+    $(function() {
         /* The following code is executed once the DOM is loaded */
         /* This flag will prevent multiple comment submits: */
-        $("#submit").click(function(){
+        $("#submit").click(function() {
             $.ajax({
                 type: 'GET',
                 url: "http://api.aaron-rachel.com/api/add_daily_temperature?employee_id=" + $("#employee_id").val() + "&temperature=" + $("#temperature").val(),
@@ -47,7 +47,7 @@
                 }
             });
         });
-    })
+    });
 </script>
 </body>
 </html>
